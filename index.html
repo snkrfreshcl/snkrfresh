@@ -1,7 +1,251 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SNKRFresh Chile</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b0b0d;color:#fff}.wrap{max-width:1100px;margin:auto;padding:0 20px}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #26262b}.logo{font-weight:900;font-size:24px;letter-spacing:-1px}.logo span{color:#e31b23}.nav a{color:#aaa;text-decoration:none;margin-left:20px}.hero{padding:70px 0 50px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.hero h1{font-size:clamp(42px,7vw,76px);line-height:.92;margin:0 0 22px}.hero p{color:#b7b7bd;font-size:18px;line-height:1.5}.btn{display:inline-block;background:#e31b23;color:white;padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:10px}.shoe{height:330px;border-radius:24px;background:linear-gradient(135deg,#24242a,#111);display:flex;align-items:center;justify-content:center;font-size:100px;box-shadow:0 25px 60px #000}.section{padding:35px 0 70px}.section h2{font-size:30px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#151519;border:1px solid #29292e;border-radius:16px;overflow:hidden}.pic{height:220px;background:linear-gradient(135deg,#28282e,#0e0e10);display:flex;align-items:center;justify-content:center;font-size:70px}.info{padding:18px}.info h3{margin:0 0 8px}.price{font-size:21px;font-weight:900}.size{color:#999;margin:7px 0 15px}.buy{display:block;text-align:center;background:#fff;color:#111;padding:11px;border-radius:9px;text-decoration:none;font-weight:800}.tag{display:inline-block;background:#e31b23;padding:5px 8px;border-radius:6px;font-size:11px;font-weight:800;margin-bottom:10px}.foot{text-align:center;color:#777;border-top:1px solid #26262b;padding:30px}.filters button{background:#18181d;color:#ccc;border:1px solid #303038;padding:9px 13px;border-radius:20px;margin:0 7px 15px 0;cursor:pointer}.filters button.active{background:#e31b23;color:#fff;border-color:#e31b23}@media(max-width:750px){.hero{grid-template-columns:1fr;padding-top:45px}.grid{grid-template-columns:1fr 1fr}.shoe{height:230px;font-size:75px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.nav a{margin-left:10px;font-size:13px}}
-</style></head><body><div class="wrap"><nav class="nav"><div class="logo">SNKR<span>FRESH</span></div><div><a href="#catalogo">Catálogo</a><a href="#contacto">Contacto</a></div></nav><section class="hero"><div><div class="tag">SANTIAGO · CHILE</div><h1>Zapatillas que hablan por ti.</h1><p>Modelos urbanos, deportivos y clásicos. Revisa el catálogo y compra directamente por WhatsApp.</p><a class="btn" href="#catalogo">Ver zapatillas</a></div><div class="shoe">👟</div></section><section class="section" id="catalogo"><h2>Catálogo</h2><div class="filters"><button class="active" onclick="filter('all',this)">Todos</button><button onclick="filter('nike',this)">Nike</button><button onclick="filter('adidas',this)">Adidas</button><button onclick="filter('puma',this)">Puma</button></div><div class="grid" id="products"></div></section><footer class="foot" id="contacto">SNKRFresh Chile · Compra por WhatsApp · Instagram @snkrfreshchile</footer></div><script>
-const products=[['Nike Air Max','nike','$89.990','40–44'],['Adidas Forum Low','adidas','$74.990','39–43'],['Puma RS-X','puma','$69.990','40–44'],['Nike Court Vision','nike','$59.990','38–44'],['Adidas Campus','adidas','$79.990','39–43'],['Puma Suede Classic','puma','$64.990','40–44']];
-function render(type='all'){document.getElementById('products').innerHTML=products.filter(p=>type==='all'||p[1]===type).map(p=>`<article class="card"><div class="pic">👟</div><div class="info"><h3>${p[0]}</h3><div class="price">${p[2]}</div><div class="size">Tallas: ${p[3]}</div><a class="buy" target="_blank" href="https://wa.me/56900000000?text=Hola%20SNKRFresh,%20me%20interesa%20${encodeURIComponent(p[0])}">Consultar por WhatsApp</a></div></article>`).join('')}
-function filter(type,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');render(type)}render();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNKRFRESHCHILE | Zapatillas</title>
+  <meta name="description" content="SNKRFRESHCHILE - Zapatillas y estilo urbano en Chile.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f7f7;
+  color: #111;
+}
+header {
+  background: #050505;
+  color: white;
+  padding: 18px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.logo span {
+  color: #e50914;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 16px;
+  font-size: 14px;
+}
+.hero {
+  background: linear-gradient(135deg, #050505, #1b1b1b);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: clamp(38px, 8vw, 72px);
+  line-height: 1;
+  margin-bottom: 18px;
+}
+.hero h1 span {
+  color: #e50914;
+}
+.hero p {
+  font-size: 18px;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+.btn {
+  display: inline-block;
+  background: #e50914;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 20px;
+}
+.section h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+.product {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+.product-image {
+  height: 220px;
+  background: #e9e9e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-weight: bold;
+}
+.product-info {
+  padding: 20px;
+}
+.product-info h3 {
+  margin-bottom: 8px;
+}
+.price {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.product .btn {
+  width: 100%;
+  text-align: center;
+}
+.about {
+  background: #111;
+  color: white;
+  text-align: center;
+  border-radius: 18px;
+  padding: 45px 25px;
+}
+.about p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  color: #ccc;
+  line-height: 1.6;
+}
+footer {
+  background: #050505;
+  color: #aaa;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 20px;
+}
+.whatsapp {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  background: #25D366;
+  color: white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+  z-index: 200;
+}
+@media (max-width: 650px) {
+  nav {
+    display: none;
+  }
+  .hero {
+    padding: 65px 18px;
+  }
+  .section {
+    padding: 45px 16px;
+  }
+}
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">SNKR<span>FRESH</span>CHILE</div>
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#productos">Zapatillas</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+  </div>
+</header>
+<section class="hero" id="inicio">
+  <h1>Zapatillas que <span>marcan</span> tu estilo.</h1>
+  <p>Modelos seleccionados para llevar tu estilo al siguiente nivel.</p>
+  <a href="#productos" class="btn">Ver zapatillas</a>
+</section>
+<section class="section" id="productos">
+  <h2>Zapatillas destacadas</h2>
+  <div class="products">
+<div class="product">
+  <div class="product-image">FOTO ZAPATILLA</div>
+  <div class="product-info">
+    <h3>Modelo Street 01</h3>
+    <div class="price">$59.990</div>
+    <a href="#contacto" class="btn">Comprar</a>
+  </div>
+</div>
+<div class="product">
+  <div class="product-image">FOTO ZAPATILLA</div>
+  <div class="product-info">
+    <h3>Modelo Urban 02</h3>
+    <div class="price">$64.990</div>
+    <a href="#contacto" class="btn">Comprar</a>
+  </div>
+</div>
+<div class="product">
+  <div class="product-image">FOTO ZAPATILLA</div>
+  <div class="product-info">
+    <h3>Modelo Fresh 03</h3>
+    <div class="price">$69.990</div>
+    <a href="#contacto" class="btn">Comprar</a>
+  </div>
+</div>
+  </div>
+</section>
+<section class="section" id="nosotros">
+  <div class="about">
+    <h2>SNKRFRESHCHILE</h2>
+    <p>
+      Somos una tienda enfocada en zapatillas y estilo urbano.
+      Encuentra modelos seleccionados y compra de forma rápida y sencilla.
+    </p>
+  </div>
+</section>
+<section class="section" id="contacto">
+  <h2>¿Quieres comprar?</h2>
+  <p style="text-align:center; margin-bottom:25px;">
+    Escríbenos por WhatsApp para consultar disponibilidad, tallas y envíos.
+  </p>
+  <div style="text-align:center;">
+    <a class="btn" href="https://wa.me/" target="_blank">
+      Contactar por WhatsApp
+    </a>
+  </div>
+</section>
+<footer>
+  © 2026 SNKRFRESHCHILE — Todos los derechos reservados.
+</footer>
+<a class="whatsapp" href="https://wa.me/" target="_blank" aria-label="WhatsApp">
+  W
+</a>
+</body>
+</html>
